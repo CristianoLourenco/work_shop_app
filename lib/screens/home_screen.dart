@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:work_shop_app/mock/items_mock.dart';
+import 'package:work_shop_app/widgets/grocerie_list_widget.dart';
+import 'package:work_shop_app/widgets/new_item_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,22 +10,23 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Groceries"),
-      ),
-      body: SingleChildScrollView(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: groceryItems.length,
-          itemBuilder: (context, index) => ListTile(
-            leading: Container(
-              width: 20,
-              height: 20,
-              color: groceryItems[index].category.getColor(),
-            ),
-            title: Text(
-              groceryItems[index].category.getName(),
-            ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _addItem(context);
+            },
+            icon: const Icon(Icons.add),
           ),
-        ),
+        ],
+      ),
+      body: const GrocerieListWidget(),
+    );
+  }
+
+  void _addItem(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => const NewItemWidget(),
       ),
     );
   }
