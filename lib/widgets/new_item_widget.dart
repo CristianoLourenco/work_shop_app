@@ -10,6 +10,26 @@ class NewItemWidget extends StatefulWidget {
 class _NewItemWidgetState extends State<NewItemWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add a new Item"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Form(
+          child: Column(
+            children: [
+              TextFormField(
+                maxLength: 50,
+                decoration: const InputDecoration(),
+                validator: (value) {
+                  return 'Demo';
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
